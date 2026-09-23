@@ -62,11 +62,11 @@
   var PRODUCT_INFO = {
     comercial: {
       title: 'Comercial',
-      desc: 'Trabalhamos com modelos como a Digitron 200kg e balanças Systel (Cuora Max e Clipse), com instalação, manutenção preventiva e revisão periódica de calibração. Quando o equipamento de prateleira não atende exatamente ao seu fluxo de venda, desenvolvemos apps, programas e sistemas de pesagem sob medida para o seu negócio.'
+      desc: 'Trabalhamos com a linha Systel: Cuora Max (pesa, etiqueta e imprime, ideal para pré-embalagem de glaciados e drenados em supermercados, peixarias, açougues e empórios), Cuora Neo (tela touch, conexão Ethernet e Wi-Fi) e Clipse (para padarias, hortifrúti e peixarias). Instalamos, damos manutenção preventiva e revisamos a calibração periodicamente.'
     },
     industrial: {
       title: 'Industrial',
-      desc: 'Plataformas industriais como as linhas Marte LS200 e LS300, aprovadas pelo INMETRO, com manutenção programada e revisão de calibração feitas por equipe própria. Também desenvolvemos sistemas personalizados para automatizar pesagens, registrar dados e agilizar processos quando a linha de produção exige algo além do equipamento padrão.'
+      desc: 'Balança de plataforma com comando Urano UR 10.000 Light: 150kg de capacidade, divisão de 50g, bandeja e estrutura em aço carbono, classe III INMETRO conforme a portaria nº 366/2021. Indicada para recebimento de matéria-prima na indústria. Manutenção programada e revisão de calibração feitas por equipe própria.'
     },
     rodoviaria: {
       title: 'Rodoviária',
@@ -74,7 +74,7 @@
     },
     analitica: {
       title: 'Analítica',
-      desc: 'Equipamentos de alta precisão para laboratório e controle de qualidade, com manutenção especializada e revisão de calibração dentro dos padrões exigidos pelo INMETRO. Ajudamos a definir a configuração ideal para a sua rotina de análises.'
+      desc: 'Balanças eletrônicas de precisão com microprocessador e tara subtrativa em toda a escala, display LCD de 8 dígitos e 4 funções: pesagem simples, contagem de peças, porcentagem absoluta e relativa. Manutenção especializada e revisão de calibração dentro dos padrões exigidos pelo INMETRO.'
     },
     pecuaria: {
       title: 'Barra e indicador Lumak para gado',
