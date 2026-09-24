@@ -47,15 +47,37 @@
   if(techForm){
     techForm.addEventListener('submit', function(e){
       e.preventDefault();
-      var name = (techForm.querySelector('#tf-nome').value.trim().split(' ')[0]) || 'você';
-      var grid = document.getElementById('techFormGrid');
-      grid.innerHTML =
-        '<div class="tech-success">' +
-          '<div class="icon-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5L20 7"/></svg></div>' +
-          '<h3 id="techSuccessName"></h3>' +
-          '<p>Esta é uma demonstração do fluxo — no site final, sua equipe recebe este chamado por e-mail ou integrado ao WhatsApp.</p>' +
-        '</div>';
-      grid.querySelector('#techSuccessName').textContent = 'Solicitação recebida, ' + name + '!';
+      if(!techForm.checkValidity()){
+        techForm.reportValidity();
+        return;
+      }
+      var message = [
+        'Olá, preciso de assistência técnica da Lumak.',
+        'Nome: ' + techForm.querySelector('#tf-nome').value.trim(),
+        'Telefone: ' + techForm.querySelector('#tf-tel').value.trim(),
+        'E-mail: ' + techForm.querySelector('#tf-email').value.trim(),
+        'Mensagem: ' + techForm.querySelector('#tf-msg').value.trim()
+      ].join('\n');
+      window.open('https://wa.me/5537999948194?text=' + encodeURIComponent(message), '_blank', 'noopener');
+    });
+  }
+
+  var contactForm = document.getElementById('contactForm');
+  if(contactForm){
+    contactForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      if(!contactForm.checkValidity()){
+        contactForm.reportValidity();
+        return;
+      }
+      var message = [
+        'Olá, gostaria de solicitar um orçamento com a Lumak Balanças.',
+        'Nome: ' + contactForm.querySelector('#cf-nome').value.trim(),
+        'Telefone: ' + contactForm.querySelector('#cf-tel').value.trim(),
+        'Cidade: ' + contactForm.querySelector('#cf-cidade').value.trim(),
+        'Necessidade: ' + contactForm.querySelector('#cf-necessidade').value.trim()
+      ].join('\n');
+      window.open('https://wa.me/5537999948194?text=' + encodeURIComponent(message), '_blank', 'noopener');
     });
   }
 
@@ -111,4 +133,14 @@
       if(e.key === 'Escape' && !modal.hidden) closeModal();
     });
   }
+
+  var floatingWhatsApp = document.createElement('a');
+  floatingWhatsApp.className = 'floating-whatsapp';
+  floatingWhatsApp.href = 'https://wa.me/5537999948194?text=Ol%C3%A1%2C%20gostaria%20de%20falar%20com%20a%20Lumak%20Balan%C3%A7as.';
+  floatingWhatsApp.target = '_blank';
+  floatingWhatsApp.rel = 'noopener';
+  floatingWhatsApp.setAttribute('aria-label', 'Falar com a Lumak no WhatsApp');
+  floatingWhatsApp.title = 'Falar no WhatsApp';
+  floatingWhatsApp.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M17.6 6.3A8 8 0 006 17.7L4.5 21.5l3.9-1.4A8 8 0 1017.6 6.3z"/><path d="M9 9.5c0 3.5 3 6.5 6.5 6.5.6 0 1-.5.9-1l-.3-1.4a1 1 0 00-1-.8l-1.4.2a5 5 0 01-3-3l.2-1.4a1 1 0 00-.8-1L9.5 8.5c-.5-.1-1 .3-1 .9z"/></svg>';
+  document.body.appendChild(floatingWhatsApp);
 })();
