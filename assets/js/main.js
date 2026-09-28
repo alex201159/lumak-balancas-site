@@ -84,7 +84,7 @@
   var PRODUCT_INFO = {
     comercial: {
       title: 'Comercial',
-      desc: 'Trabalhamos com a linha Systel: Cuora Max (pesa, etiqueta e imprime, ideal para pré-embalagem de glaciados e drenados em supermercados, peixarias, açougues e empórios), Cuora Neo (tela touch, conexão Ethernet e Wi-Fi) e Clipse (para padarias, hortifrúti e peixarias). Instalamos, damos manutenção preventiva e revisamos a calibração periodicamente.'
+      desc: 'Balanças de balcão e checkout para mercados, açougues, padarias, hortifrútis e lojas, com opções que pesam, etiquetam e imprimem. Indicamos o modelo certo para a sua rotina, instalamos, damos manutenção preventiva e revisamos a calibração periodicamente.'
     },
     industrial: {
       title: 'Industrial',
@@ -94,13 +94,9 @@
       title: 'Rodoviária',
       desc: 'Balanças rodoviárias de alta capacidade para pesagem de caminhões, com manutenção preventiva e corretiva e revisão periódica de calibração, com relatório no modelo RBC. Avaliamos o volume e o tipo de carga da sua operação para propor a solução mais adequada.'
     },
-    analitica: {
-      title: 'Analítica',
-      desc: 'Balanças eletrônicas de precisão com microprocessador e tara subtrativa em toda a escala, display LCD de 8 dígitos e 4 funções: pesagem simples, contagem de peças, porcentagem absoluta e relativa. Manutenção especializada e revisão de calibração dentro dos padrões exigidos pelo INMETRO.'
-    },
     pecuaria: {
       title: 'Barra e indicador Lumak para gado',
-      desc: 'Solução própria da Lumak para balança de gado: barras robustas, indicador dedicado e controle total da pesagem pelo app. O sistema é ajustado para a rotina da fazenda e pode ser integrado ao fluxo de manejo. Também desenvolvemos apps, programas e sistemas sob medida para automatizar processos de pesagem em empresas.'
+      desc: 'Produto próprio da Lumak para balança de gado: barras robustas, indicador dedicado e controle total da pesagem pelo app. O sistema é ajustado para a rotina da fazenda e pode ser integrado ao fluxo de manejo. Também desenvolvemos apps, programas e sistemas sob medida para automatizar processos de pesagem em empresas.'
     }
   };
   var modal = document.getElementById('productModal');
@@ -132,6 +128,55 @@
     document.addEventListener('keydown', function(e){
       if(e.key === 'Escape' && !modal.hidden) closeModal();
     });
+  }
+
+  var igSection = document.getElementById('instagram');
+  var igGrid = document.getElementById('igGrid');
+  var igFallback = document.getElementById('igFallback');
+  var igFeedUrl = igSection && igSection.getAttribute('data-feed-url');
+  if(igGrid && igFeedUrl && window.fetch){
+    fetch(igFeedUrl)
+      .then(function(res){ if(!res.ok) throw new Error(res.status); return res.json(); })
+      .then(function(data){
+        var posts = (Array.isArray(data) ? data : data.posts || []).slice(0, 6);
+        if(!posts.length) return;
+        posts.forEach(function(post){
+          var size = post.sizes && (post.sizes.medium || post.sizes.small);
+          var src = (size && size.mediaUrl) || (post.mediaType === 'VIDEO' ? post.thumbnailUrl : post.mediaUrl);
+          if(!src) return;
+          var caption = (post.prunedCaption || post.caption || '').trim();
+          var link = document.createElement('a');
+          link.className = 'ig-post';
+          link.href = post.permalink || 'https://www.instagram.com/lumakbalancas/';
+          link.target = '_blank';
+          link.rel = 'noopener';
+          link.setAttribute('aria-label', caption ? 'Post no Instagram: ' + caption.slice(0, 80) : 'Ver post no Instagram');
+          var img = document.createElement('img');
+          img.src = src;
+          img.alt = post.altText || caption.slice(0, 120) || 'Postagem da Lumak Balanças no Instagram';
+          img.loading = 'lazy';
+          link.appendChild(img);
+          if(post.mediaType === 'VIDEO' || post.mediaType === 'CAROUSEL_ALBUM'){
+            var type = document.createElement('span');
+            type.className = 'ig-post-type';
+            type.innerHTML = post.mediaType === 'VIDEO'
+              ? '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>'
+              : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="7" y="7" width="13" height="13" rx="2"/><path d="M4 16V6a2 2 0 012-2h10"/></svg>';
+            link.appendChild(type);
+          }
+          if(caption){
+            var overlay = document.createElement('span');
+            overlay.className = 'ig-post-overlay';
+            var p = document.createElement('p');
+            p.textContent = caption;
+            overlay.appendChild(p);
+            link.appendChild(overlay);
+          }
+          igGrid.appendChild(link);
+        });
+        if(igGrid.children.length && igFallback) igFallback.hidden = true;
+      })
+      .catch(function(){});
   }
 
   var floatingWhatsApp = document.createElement('a');

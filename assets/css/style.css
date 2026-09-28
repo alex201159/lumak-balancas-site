@@ -611,10 +611,10 @@
   .region-hero-photo{
     position:absolute;
     inset:0;
-    background-image:url("../geradas/lumak-home-empresa-regiao.png");
+    background-image:url("../geradas/hero-rodoviaria-lumak.webp");
     background-repeat:no-repeat;
-    background-size:165% auto;
-    background-position:100% 20%;
+    background-size:cover;
+    background-position:right 42%;
     transform:scale(1.015);
   }
   .region-hero-photo::after{
@@ -735,41 +735,59 @@
     line-height:1.45;
     text-transform:uppercase;
   }
-  .region-map-shape{
+  .region-map-figure{
     position:relative;
     width:100%;
-    min-height:280px;
+    margin:0;
   }
-  .region-map-shape::before{
-    content:"";
-    position:absolute;
-    inset:20px 10px 10px 0;
-    background:#f2dd16;
-    clip-path:polygon(45% 0,57% 12%,73% 8%,79% 25%,96% 38%,84% 53%,89% 72%,69% 78%,57% 100%,40% 85%,19% 92%,22% 69%,5% 55%,14% 36%,7% 20%,28% 16%);
+  .region-map-figure img{
+    display:block;
+    width:100%;
+    height:auto;
+    mix-blend-mode:multiply;
   }
-  .region-map-shape > strong{
+  .region-map-pin{
     position:absolute;
-    inset:50% auto auto 48%;
-    transform:translate(-50%,-50%);
-    color:rgba(0,0,0,0.11);
-    font-family:"Sora",Arial,sans-serif;
-    font-size:4.5rem;
-    line-height:1;
+    left:57%;
+    top:61%;
+    width:14px;
+    height:14px;
+    margin:-7px 0 0 -7px;
+    border-radius:50%;
+    background:#111;
+    border:3px solid #fff;
+    box-shadow:0 0 0 0 rgba(17,17,17,0.45);
+    animation:mapPulse 2.4s ease-out infinite;
   }
-  .map-city{
+  .region-map-pin span{
     position:absolute;
-    z-index:2;
+    left:50%;
+    bottom:calc(100% + 8px);
+    transform:translateX(-50%);
+    padding:5px 8px;
     white-space:nowrap;
-    font-size:0.67rem;
+    font-family:"Sora",Arial,sans-serif;
+    font-size:0.66rem;
     font-weight:600;
     line-height:1;
+    color:var(--brand-yellow);
+    background:#111;
   }
-  .map-city::before{ content:""; display:inline-block; width:7px; height:7px; margin-right:5px; border-radius:50%; background:#111; }
-  .map-city-main{ left:24%; top:48%; font-size:0.78rem; }
-  .map-city-main::before{ width:13px; height:13px; background:var(--brand-yellow); border:4px solid #111; vertical-align:-4px; }
-  .map-city-para{ left:48%; top:17%; }
-  .map-city-divinopolis{ left:0; top:67%; }
-  .map-city-campo{ left:40%; bottom:4%; }
+  .region-map-pin span::after{
+    content:"";
+    position:absolute;
+    left:50%;
+    top:100%;
+    margin-left:-4px;
+    border:4px solid transparent;
+    border-top-color:#111;
+  }
+  @keyframes mapPulse{
+    0%{ box-shadow:0 0 0 0 rgba(17,17,17,0.45); }
+    70%{ box-shadow:0 0 0 14px rgba(17,17,17,0); }
+    100%{ box-shadow:0 0 0 0 rgba(17,17,17,0); }
+  }
+  @media (prefers-reduced-motion: reduce){ .region-map-pin{ animation:none; } }
 
   .region-solutions{ display:flex; flex-direction:column; justify-content:center; min-width:0; }
   .region-solutions-head{ display:flex; align-items:flex-end; justify-content:space-between; gap:24px; margin-bottom:24px; }
@@ -792,6 +810,22 @@
     text-align:right;
   }
   .region-segment-grid{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; }
+  .region-segment-featured{ position:relative; background:#111; border-bottom-color:var(--brand-yellow); }
+  .region-segment-featured strong{ color:var(--brand-yellow); }
+  .region-segment-featured span{ color:#d8d8d2; }
+  .region-segment-featured::after{
+    content:"Produto Lumak";
+    position:absolute;
+    top:8px;
+    left:8px;
+    padding:4px 7px;
+    font-family:"JetBrains Mono",monospace;
+    font-size:0.56rem;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    color:#111;
+    background:var(--brand-yellow);
+  }
   .region-segment{ min-width:0; color:#111; text-decoration:none; background:#fff; border-bottom:3px solid var(--brand-yellow); overflow:hidden; }
   .region-segment img{ width:100%; aspect-ratio:1.9/1; object-fit:cover; filter:saturate(0.86) contrast(1.03); transition:transform .35s ease; }
   .region-segment:hover img{ transform:scale(1.04); }
@@ -814,7 +848,7 @@
     .home-region .region-site-header .mobile-panel{ position:absolute; top:100%; left:0; right:0; background:#0b0c0d; }
     .home-region .region-site-header .region-search{ display:none; }
     .region-hero{ min-height:0; }
-    .region-hero-photo{ background-size:auto 180%; background-position:64% 10%; }
+    .region-hero-photo{ background-size:cover; background-position:62% center; }
     .region-hero-photo::after{ background:rgba(3,4,4,0.58); }
     .region-hero-inner{ min-height:690px; padding-top:122px; padding-bottom:190px; align-items:flex-start; }
     .region-hero-copy{ width:min(580px, 88vw); }
@@ -829,7 +863,7 @@
 
   @media (max-width: 620px){
     .home-region .region-site-header .brand-text{ font-size:1rem; }
-    .region-hero-photo{ background-size:auto 180%; background-position:63% 10%; }
+    .region-hero-photo{ background-size:cover; background-position:66% center; }
     .region-hero-photo::after{ background:linear-gradient(90deg, rgba(3,4,4,0.88), rgba(3,4,4,0.43)); }
     .region-hero-inner{ min-height:670px; padding-top:120px; padding-bottom:208px; }
     .region-hero-copy{ width:100%; max-width:100%; min-width:0; overflow:hidden; }
@@ -848,7 +882,7 @@
     .region-reach-grid{ padding-top:54px; padding-bottom:54px; }
     .region-map{ grid-template-columns:1fr; }
     .region-map > p{ margin-bottom:12px; }
-    .region-map-shape{ min-height:260px; }
+    .region-map-figure{ max-width:340px; margin:0 auto; }
     .region-solutions-head{ align-items:flex-start; flex-direction:column; }
     .region-solutions-head > p{ text-align:left; }
     .region-segment-grid{ grid-template-columns:1fr 1fr; }
@@ -1285,4 +1319,83 @@
     .coverage-panel{ grid-template-columns:1fr; }
     .coverage-contact{ grid-column:auto; }
     .floating-whatsapp{ right:16px; bottom:16px; width:48px; height:48px; }
+  }
+
+  /* Destaque balança de gado */
+  .home-product-grid{ grid-template-columns:repeat(5,minmax(0,1fr)); }
+  .mini-product-featured{ position:relative; grid-column:span 2; background:#111; border-color:#111; }
+  .mini-product-featured img{ aspect-ratio:8/3; }
+  .mini-product-featured strong{ color:var(--brand-yellow); font-size:1.12rem; }
+  .mini-product-featured span{ color:#d8d8d2; }
+  .mini-badge,
+  .product-badge{
+    position:absolute;
+    top:12px;
+    left:12px;
+    z-index:2;
+    padding:5px 9px;
+    font-family:"JetBrains Mono",monospace;
+    font-style:normal;
+    font-size:0.64rem;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    color:#111;
+    background:var(--brand-yellow);
+    border-radius:4px;
+  }
+  .product-grid{ grid-template-columns:repeat(5,minmax(0,1fr)); }
+  .product-card-featured{ grid-column:span 2; background:#111; border-color:#111; }
+  .product-card-featured .product-thumb{ position:relative; aspect-ratio:8/3; }
+  .product-card-featured h3{ color:var(--brand-yellow); font-size:1.2rem; }
+  .product-card-featured p{ color:#d8d8d2; }
+  .product-card-featured .go{ color:var(--brand-yellow); }
+  .product-card.product-card-featured:hover{ border-color:#111; }
+  @media (max-width: 900px){ .product-card-featured .product-thumb{ aspect-ratio:16/7; } }
+  .featured-card-highlight{ order:-1; background:#111; border-color:#111; }
+  .featured-card-highlight h3{ color:var(--brand-yellow); }
+  .featured-card-highlight p{ color:#d8d8d2; }
+  .featured-card-highlight .product-specs span{ color:#f2f2ef; border-color:rgba(255,255,255,0.22); background:rgba(255,255,255,0.06); }
+  .featured-card-highlight .btn-ghost{ color:#111; background:var(--brand-yellow); border-color:var(--brand-yellow); }
+  .featured-card-highlight .price-tag{ color:#111 !important; background:var(--brand-yellow) !important; }
+
+  @media (max-width: 900px){
+    .home-product-grid, .product-grid{ grid-template-columns:repeat(3,minmax(0,1fr)); }
+    .mini-product-featured, .product-card-featured{ grid-column:1 / -1; }
+    .mini-product-featured img{ aspect-ratio:16/7; }
+  }
+  @media (max-width: 620px){
+    .home-product-grid, .product-grid{ grid-template-columns:1fr; }
+    .mini-product-featured img{ aspect-ratio:4/3; }
+  }
+
+  /* Feed do Instagram */
+  .instagram-feed{ background:var(--surface); border-top:1px solid var(--line); }
+  .ig-profile{ display:inline-flex; align-items:center; gap:12px; color:var(--ink); text-decoration:none; padding:10px 16px 10px 10px; border:1px solid var(--line); border-radius:8px; transition:border-color .2s ease; }
+  .ig-profile:hover{ border-color:var(--brand-yellow); }
+  .ig-profile strong{ display:block; font-family:"Sora"; font-size:0.95rem; }
+  .ig-profile small{ display:block; color:var(--muted); font-size:0.75rem; }
+  .ig-profile-icon{ width:42px; height:42px; flex:none; display:grid; place-items:center; border-radius:8px; color:var(--brand-black); background:var(--brand-yellow); }
+  .ig-profile-icon svg{ width:22px; height:22px; }
+  .ig-grid{ display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:12px; }
+  .ig-grid:empty{ display:none; }
+  .ig-post{ position:relative; display:block; aspect-ratio:1; overflow:hidden; border-radius:8px; background:var(--bg); }
+  .ig-post img{ width:100%; height:100%; object-fit:cover; display:block; transition:transform .4s cubic-bezier(.16,.8,.24,1); }
+  .ig-post:hover img{ transform:scale(1.05); }
+  .ig-post-overlay{ position:absolute; inset:0; display:flex; align-items:flex-end; padding:12px; background:linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.82)); opacity:0; transition:opacity .25s ease; }
+  .ig-post:hover .ig-post-overlay, .ig-post:focus-visible .ig-post-overlay{ opacity:1; }
+  .ig-post-overlay p{ margin:0; color:#fff; font-size:0.74rem; line-height:1.4; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+  .ig-post-type{ position:absolute; top:8px; right:8px; width:26px; height:26px; display:grid; place-items:center; border-radius:6px; color:#fff; background:rgba(0,0,0,0.5); }
+  .ig-post-type svg{ width:14px; height:14px; }
+  .ig-fallback{ display:flex; align-items:center; gap:20px; padding:28px; border:1px solid var(--line); border-radius:8px; background:var(--bg); }
+  .ig-fallback h3{ font-size:1.1rem; margin:0 0 4px; }
+  .ig-fallback p{ margin:0; color:var(--muted); font-size:0.9rem; }
+  .ig-fallback .btn{ margin-left:auto; flex:none; }
+  .ig-fallback[hidden]{ display:none; }
+  @media (max-width: 900px){
+    .ig-grid{ grid-template-columns:repeat(3,minmax(0,1fr)); }
+  }
+  @media (max-width: 620px){
+    .ig-grid{ grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
+    .ig-fallback{ flex-direction:column; align-items:flex-start; }
+    .ig-fallback .btn{ margin-left:0; width:100%; justify-content:center; }
   }
